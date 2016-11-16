@@ -11,22 +11,43 @@
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
   </body>
   <script>
+ var contacts = [
+   {key: 1, name: "Tracey Zavadil", email: "traceyzavadil@gmail.com", description: "Front End Unicorn"},
+   {key: 2, name: "Clark", email: "clarkgable@giveadamn.com"},
+   {key: 3, name: "Pierce"},
+ ]
+
+  var ContactItem = React.createClass({
+    propTypes: {
+      // "propTypes" is a debugging mechanism - it lets React check in real time
+      // that the "props" argument passed to "createElement" makes sense. Not strictly necessary, but saves a lot of time
+      name: React.PropTypes.string.isRequired,
+      email: React.PropTypes.string.isRequired,
+      description: React.PropTypes.string,
+    },
+
+    render: function(){
+      return (
+        React.createElement('li', {},
+          React.createElement('h2', {}, this.props.name),
+          React.createElement('a', {href: 'mailto: + this.props.email'}, this.props.email),
+          React.createElement('div', {}, this.props.description)
+
+        )
+      )
+    },
+  });
+  var contactItemElements = contacts
+  .filter(function(contact) { return contact.email })
+  .map(function(contact) { return React.createElement(ContactItem, contact) })
+
   var rootElement =
     React.createElement('div', {},
       React.createElement('h1', {}, "Contacts"),
-      React.createElement('ul', {},
-        React.createElement('li', {},
-          React.createElement('h2', {}, "Tracey Zavadil"),
-          React.createElement('a', {href: 'mailto:traceyzavadil@gmail.com'},
-        'traceyzavadil@gmail.com')
-      ),
-      React.createElement('li', {},
-        React.createElement('h2', {}, "Clark Gable"),
-        React.createElement('a', {href: 'mailto:clark@giveadamn.com'},
-      'clark@giveadamn.com')
-    )
-  )
+      React.createElement('ul', {}, contactItemElements)
+
 )
+
 ReactDOM.render(rootElement, document.getElementById('react-app'))
   </script>
 </html>
