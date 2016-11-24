@@ -9,13 +9,18 @@
 
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
-  </body>
+
   <script>
+
  var contacts = [
    {key: 1, name: "Tracey Zavadil", email: "traceyzavadil@gmail.com", description: "Front End Unicorn"},
    {key: 2, name: "Clark", email: "clarkgable@giveadamn.com"},
    {key: 3, name: "Pierce"},
  ]
+
+var newContact = {name:"", email: "", description: ""}
+
+// COMPONENTS--------------------------------------
 
   var ContactItem = React.createClass({
     propTypes: {
@@ -26,7 +31,7 @@
       description: React.PropTypes.string,
     },
 
-    render: function(){
+    render(){
       return (
         React.createElement('li', {},
           React.createElement('h2', {}, this.props.name),
@@ -36,7 +41,37 @@
         )
       )
     },
-  });
+  })
+
+  var ContactForm = React.createClass({
+    propTypes: {
+      contact: React.PropTypes.object.isRequired
+    },
+
+    render() {
+      return (
+        React.createElement('form', {},
+          React.createElement('input', {
+            type: 'text',
+            placeholder: 'Name (required)',
+            value: this.props.contact.name,
+          }),
+          React.createElement('input', {
+            type: 'email',
+            placeholder: 'Email',
+            value: this.props.contact.email,
+
+          }),
+          React.createElement('textarea', {
+            placeholder: 'Description',
+            value: this.props.contact.description,
+          }),
+          React.createElement('button', {type: 'submit'}, "Add Contact, Baby")
+        )
+      )
+    },
+  })
+
   var contactItemElements = contacts
   .filter(function(contact) { return contact.email })
   .map(function(contact) { return React.createElement(ContactItem, contact) })
@@ -44,10 +79,11 @@
   var rootElement =
     React.createElement('div', {},
       React.createElement('h1', {}, "Contacts"),
-      React.createElement('ul', {}, contactItemElements)
-
+      React.createElement('ul', {}, contactItemElements),
+      React.createElement(ContactForm, {contact: newContact})
 )
 
 ReactDOM.render(rootElement, document.getElementById('react-app'))
   </script>
+    </body>
 </html>
