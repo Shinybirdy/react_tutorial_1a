@@ -1,3 +1,40 @@
 body {
+  font-family: Helvetica, sans-serif;
+  margin:5px;
   background-color: lightblue;
+}
+.ContactView-title {
+  font-size: 30px;
+  padding: 0 24px;
+}
+
+.ContactView-list {
+  border-top: 1px solid lightyellow;
+}
+
+.ContactItem-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ContactItem-email {
+  font-size: 16px;
+  font-style: italic;
+  color:darkblue;
+}
+
+.ContactItem-description {
+  font-size: 14px;
+
+}
+.ContactForm {
+  padding:8px 24px;
+}
+
+.ContactForm > input,
+.ContactForm > textarea {
+  display: block;
+  width: auto;
+  border: 1px solid #999;
+  
 }
