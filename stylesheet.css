@@ -9,7 +9,7 @@ body {
 }
 
 .ContactView-list {
-  border-top: 1px solid lightyellow;
+  border-top: 3px solid lightyellow;
 }
 
 .ContactItem-name {
@@ -28,13 +28,14 @@ body {
 
 }
 .ContactForm {
-  padding:8px 24px;
+  padding:15px 24px;
 }
 
 .ContactForm > input,
 .ContactForm > textarea {
   display: block;
-  width: auto;
+  width: 300px;
   border: 1px solid #999;
-  
+  padding: inherit;
+
 }
